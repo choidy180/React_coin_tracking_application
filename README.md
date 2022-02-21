@@ -8,3 +8,7 @@
 ### Coin List, image API 이용해서 불러오기, 페이징 처리 파리미터 오류 예외처리 완료
 ### (추가) => Coin 상세 Data, Price 불러오기 완료
 ### (추가) => TypeScript 이용하여 받아오는 코인 데이터 Type 완료 + 개발환경 추가 셋팅(TypeScript Interface)
+
+# 2022-02-22
+### Nested Routes 기본 완료 -> Coin부분에 path마지막부분에 명시적으로 /* 추가하여 route내부에서 nested route가 render될수 있음을 추가적으로 표기
+### 자식 route를 element내부에서 작성
