@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Link, 
   Routes, 
@@ -7,13 +6,14 @@ import {
   useParams,
   useMatch,
   Outlet,
+  useOutletContext,
 } from "react-router-dom";
 import Price from "./Price.tsx";
 import Chart from "./Chart.tsx";
 import styled from "styled-components";
-import { useRouteMatch } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api.ts";
+import { useState } from "react";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -146,7 +146,11 @@ interface PriceData{
   };
 }
 
-function Coin() {
+interface ChartProps{
+  coin: string;
+}
+
+export default function Coin() {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
   const priceMatch = useMatch("/:coinId/price");
@@ -158,9 +162,9 @@ function Coin() {
     fetchCoinTickers(coinId)
   );
   const loading = infoLoading || tickersLoading;
+  const [user, setUser] = useState({name:"Kim"});
   return (
   <Container>
-    <Outlet context={{coinId}}/>
     <Header>
       <Title>{state?.name || "Loding.."}</Title>
     </Header>
@@ -202,8 +206,8 @@ function Coin() {
           </Tab>
         </Tabs>
         <Routes>
-          <Route path="price" element={<Price/>}/>
-          <Route path="chart" element={<Chart/>}/>
+          <Route path="price" element={<Price coinId={coinId}/>}/>
+          <Route path="chart" element={<Chart coinId={coinId}/>}/>
         </Routes>
       </>
     )}
@@ -211,4 +215,3 @@ function Coin() {
   );
 };
 
-export default Coin;

@@ -13,3 +13,6 @@
 ### Nested Routes 기본 완료 -> Coin부분에 path마지막부분에 명시적으로 /* 추가하여 route내부에서 nested route가 render될수 있음을 추가적으로 표기
 ### 자식 route를 element내부에서 작성
 ### Chart, Price탑 생성 및 링크로 연결완료, isActive props추가해서 선택 링크에따라 색상 체인지되도록 구현완료(accentColor)
+
+# 2022-02-23
+### Outlet 이용해서 상태 받아오려다 실패 .. 구글링해도 일단 자료가 많이 없어서 일반 상태넘김으로 구현하고 추후에 수정해야함(아직 수정x)
