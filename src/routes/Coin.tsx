@@ -6,6 +6,7 @@ import {
   useLocation, 
   useParams,
   useMatch,
+  Outlet,
 } from "react-router-dom";
 import Price from "./Price.tsx";
 import Chart from "./Chart.tsx";
@@ -159,6 +160,7 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   return (
   <Container>
+    <Outlet context={{coinId}}/>
     <Header>
       <Title>{state?.name || "Loding.."}</Title>
     </Header>
