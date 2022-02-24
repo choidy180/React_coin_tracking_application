@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api.ts";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -159,12 +160,20 @@ export default function Coin() {
     fetchCoinInfo(coinId)
   );
   const {isLoading: tickersLoading, data:tickersData} = useQuery<PriceData>(["tickers",coinId], ()=> 
-    fetchCoinTickers(coinId)
+    fetchCoinTickers(coinId),
+    {
+      refetchInterval: 5000,
+    }
   );
   const loading = infoLoading || tickersLoading;
   const [user, setUser] = useState({name:"Kim"});
   return (
   <Container>
+    <Helmet>
+      <title>
+        {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+      </title>
+    </Helmet>
     <Header>
       <Title>{state?.name || "Loding.."}</Title>
     </Header>
@@ -182,8 +191,8 @@ export default function Coin() {
             <span>{infoData?.symbol}</span>
           </OverviewItem>
           <OverviewItem>
-            <span>Open Source:</span>
-            <span>{infoData?.open_source ? "YES" : "NO"}</span>
+            <span>Price:</span>
+            <span>${tickersData?.quotes.USD.price}</span>
           </OverviewItem>
         </Overview>
         <Description>{infoData?.description}</Description>
@@ -206,7 +215,7 @@ export default function Coin() {
           </Tab>
         </Tabs>
         <Routes>
-          <Route path="price" element={<Price coinId={coinId}/>}/>
+          <Route path="price" element={<Price/>}/>
           <Route path="chart" element={<Chart coinId={coinId}/>}/>
         </Routes>
       </>
