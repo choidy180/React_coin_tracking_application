@@ -11,10 +11,6 @@
 /btc/information
 /btc/chart
 
-## 사용기술 
-
-
-
 # 2022-02-21 
 ### Coin List, image API 이용해서 불러오기, 페이징 처리 파리미터 오류 예외처리 완료
 ### (추가) => Coin 상세 Data, Price 불러오기 완료
@@ -37,3 +33,6 @@
 # 2022-02-05
 ### React Helmet title 커스텀 완료
 ### 프로젝트 1차적인 종료
+
+# 2022-02-06
+### ThemeProvider + theme index.tsx에서 App component로 이동 (state로 theme 관리)

@@ -2,6 +2,9 @@ import { createGlobalStyle } from "styled-components";
 import Router from './Router.tsx'
 import reset from "styled-reset";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from './theme.ts';
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
@@ -32,13 +35,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+    const [isDark, setIsDark] = useState(false);
+    const toggleDark=()=>setIsDark(current => !current);
     return (
         <>
+          <ThemeProvider theme={isDark ? darkTheme :lightTheme}>
             <GlobalStyle/>
-            <Router />
+            <Router isDark={isDark} toggleDark={toggleDark}/>
             <ReactQueryDevtools initialIsOpen={true}/>
+          </ThemeProvider>
         </>
     )
 }
 
+// App (isDark, modifierFn)
+
+//  -> Router -> Coins(modierFn)
 export default App
