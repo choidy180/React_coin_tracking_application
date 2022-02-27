@@ -24,15 +24,30 @@
 # 2022-02-23
 ### Outlet 이용해서 상태 받아오려다 실패 .. 구글링해도 일단 자료가 많이 없어서 일반 상태넘김으로 구현하고 추후에 수정해야함(아직 수정x)
 
-# 2022-02-04
+# 2022-02-24
 ### coinHistory 불러오기 완료(react-Query)
 ### npm install --save react-apexcharts apexcharts
 ### apexChart 차트구현
 ### apexCahrt Customer 완료
 
-# 2022-02-05
+# 2022-02-25
 ### React Helmet title 커스텀 완료
-### 프로젝트 1차적인 종료
 
-# 2022-02-06
+# 2022-02-26
 ### ThemeProvider + theme index.tsx에서 App component로 이동 (state로 theme 관리)
+
+# 2022-02-28
+### RecoilRoot
+### recoil 상태를 사용하는 컴포넌트는 부모 트리 어딘가에 나타나는 RecoilRoot 가 필요하다. Root 컴포넌트가 RecoilRoot를 넣기에 가장 좋은 장소다.
+
+### const textState = atom({
+### key: 'textState', // 유니크한 ID(다른 atom/selector와 관련하여)
+### default: '', // 기본값 (초기값)
+### });
+
+
+### useRecoilState()
+### 컴포넌트가 atom을 읽고 쓰게 하기 위해서는 useRecoilState()를 아래와 같이 사용하면 된다.
+### ex) const [text, setText] = useRecoilState(textState);
+
+### https://recoiljs.org/ko/docs/introduction/getting-started
