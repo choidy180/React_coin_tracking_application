@@ -53,4 +53,4 @@
 ### https://recoiljs.org/ko/docs/introduction/getting-started
 
 # 2022-03-05
-### Recoil 활용하여 테마 선택 가능하게 수정, 
+### Recoil 활용하여 테마 선택 가능하게 수정
