@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api.ts";
 import { Helmet } from "react-helmet";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atoms.ts";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -69,6 +71,8 @@ interface ICoinProps{
 }
 
 function Coins({}: ICoinProps) {
+  const setDarkAtom = useSetRecoilState(isDarkAtom); // RecoilState가져오는 부분
+  const toggleDarkAtom = () => setDarkAtom((e) => !e);
   const {isLoading,data} = useQuery<Icoin[]>("allCoins", fetchCoins);
   return(
     <Container>
@@ -76,8 +80,9 @@ function Coins({}: ICoinProps) {
         <title>코인</title>
       </Helmet>
       <Header>
-        <Title>Coin</Title>
-        <button>Toggle Dark Mode</button>
+        <Title>코인</Title>
+        {/* 버튼 클릭해서 테마 변경 */}
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
       <CoinsList>
         {isLoading ? (
@@ -85,8 +90,8 @@ function Coins({}: ICoinProps) {
         ) : data?.slice(0,100).map((coin) => (
           <Coin key={coin.id}>
             <Link to={`/${coin.id}`} state={{ name:coin.name, rank:coin.rank }}>
-                <Img src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="Coin" />
-                {coin.name} &rarr;
+              <Img src={`https://cryptoicon-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} alt="Coin" />
+              {coin.name} &rarr;
             </Link>
           </Coin>
         ))}
